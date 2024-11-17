@@ -30,6 +30,7 @@ public class InimigoBase : MonoBehaviour, IReceberDano
                 // Remove o inimigo da lista de inimigos ativos
                 GameManager.main.RemoveEnemyFromList(gameObject);
                 Destroy(gameObject);
+                GameManager.main.GameOver();
                 return;
             }
             else
