@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.Events;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -26,6 +27,8 @@ public class GameManager : MonoBehaviour
     int inimigosVivos;
     int inimigosRestantesParaSpawn;
     bool isSpawning = false;
+
+    public GameObject gameOverPanel;
 
     private bool interstitialPodePular = true;
 
@@ -128,5 +131,27 @@ public class GameManager : MonoBehaviour
     public void RemoveEnemyFromList(GameObject enemy)
     {
         inimigosAtivos.Remove(enemy);
+    }
+
+    public void GameOver()
+    {
+        isSpawning = false;
+        gameOverPanel.SetActive(true);
+        Time.timeScale = 0f;
+    }
+
+    // Reiniciar o jogo, recarrega a cena atual
+    public void ReiniciarJogo()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        gameOverPanel.SetActive(false);
+        Time.timeScale = 1f;
+    }
+
+    public void ContinuarJogo()
+    {
+        isSpawning = true;
+        Time.timeScale = 1f;
+        gameOverPanel.SetActive(false);
     }
 }
