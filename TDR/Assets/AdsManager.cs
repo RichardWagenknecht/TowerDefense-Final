@@ -11,6 +11,7 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
     bool bannerVisivel;
     public bool exibindoIntersticial = false;
     public Button button;
+    public RecompensaDelegate recompensaDelegate;
 
     private void Awake()
     {
@@ -60,12 +61,14 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
         }
         exibindoIntersticial = true;
     }
+    public delegate void RecompensaDelegate(int valor);
 
     public void RecompensaContinuar()
     {
-        Advertisement.Show("Rewarded_Continuar", this);
+        Advertisement.Show("Rewarded_Android", this);
         Advertisement.Banner.Hide();
         bannerVisivel = false;
+        recompensaDelegate = GameManager.main.ContinuarJogo;
     }
 
     public void Recompensa()
@@ -73,21 +76,18 @@ public class AdsManager : MonoBehaviour, IUnityAdsInitializationListener, IUnity
         Advertisement.Show("Rewarded_Android", this);
         Advertisement.Banner.Hide();
         bannerVisivel = false;
+        recompensaDelegate = GameManager.main.AumentarMoeda;
     }
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
         if (placementId == "Rewarded_Android" && showCompletionState == UnityAdsShowCompletionState.COMPLETED)
         {
-            GameManager.main.AumentarMoeda(200);
+            recompensaDelegate(200);
         }
         else if (placementId == "IntersentialPulavel" || placementId == "IntercentialNaoPulavel")
         {
             exibindoIntersticial = false;
-        }
-        else if (placementId == "Rewarded_Continuar" && showCompletionState == UnityAdsShowCompletionState.COMPLETED)
-        {
-            GameManager.main.ContinuarJogo();
         }
 
     }

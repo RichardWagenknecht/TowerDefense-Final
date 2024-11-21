@@ -148,7 +148,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void ContinuarJogo()
+    public void ContinuarJogo(int inutil)
     {
         isSpawning = true;
         Time.timeScale = 1f;
