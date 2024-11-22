@@ -29,7 +29,7 @@ public class Bloco : MonoBehaviour
     {
         if (tower != null) return; // Retorna se já houver uma torre construída
 
-        Torre towerToBuild = GerenciadorConstrução.main.GetSelectedTower(); // Obtém a torre selecionada
+        Torre towerToBuild = GerenciadorDeConstrução.main.GetSelectedTower(); // Obtém a torre selecionada
 
         if (towerToBuild.custo > GameManager.main.currency) // Verifica se há moedas suficientes
         {

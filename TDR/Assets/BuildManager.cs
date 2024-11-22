@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GerenciadorConstrução : MonoBehaviour
+public class GerenciadorDeConstrução : MonoBehaviour
 {
-    public static GerenciadorConstrução main; // Instância única do GerenciadorConstrução
+    public static GerenciadorDeConstrução main; // Instância única do GerenciadorConstrução
 
     [SerializeField] List<Torre> torres; // Lista de torres disponíveis
 
